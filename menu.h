@@ -193,13 +193,13 @@ void STARTMENU()
 			WRITE1("Write [exit] to exit");
 	    }
 		
-		if(ANSWER == "info" || ANSWER == "Info")
+	    if(ANSWER == "info" || ANSWER == "Info")
 	    {
 			Sleep(1000);
 			SHOWINFO();
 	    }
 	
-		if(ANSWER == "clear" || ANSWER == "Clear") 
+	    if(ANSWER == "clear" || ANSWER == "Clear") 
 	    {
 			WRITE1("Clearing...");
 			Sleep(1000);
@@ -207,12 +207,12 @@ void STARTMENU()
 			SHOWMENU();
 	    }
 	    
-		if(ANSWER == "exit" || ANSWER == "Exit") 
-		{
+	    if(ANSWER == "exit" || ANSWER == "Exit") 
+	    {
 			WRITE1("Closing...");
 			Sleep(1000);
 			CLOSE = 1;
-		}
+	    }
 	} 
 	while(CLOSE != 1);
 }
