@@ -65,7 +65,7 @@ void STARTMENU()
 		cin >> ANSWER;
 		cout << endl;
 
-		if(ANSWER == "avmh3") 
+	    if(ANSWER == "avmh3") 
 	    {
 			RUNINFOHELMET(AVM, HELMETXPLEVEL3);
 	    }
