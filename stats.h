@@ -5,7 +5,11 @@ using namespace std;
 
 const int AVM = 132;
 const int KAR98 = 72;
+
+// AK47/GROZA
 const int AK47 = 48;
+
+// M416/SCAR-L/M16A4/AUG
 const int M416 = 41;
 
 const int STATUS3 = 0;
