@@ -1,220 +1,406 @@
 #ifndef PUBG_MENU_H
 #define PUBG_MENU_H
 
-void SHOWINFO()
+void DisplaySleep();
+void DisplayClear();
+void OpenGmail();
+void OpenGithub();
+void OpenBoth();
+
+void ShowMenu()
 {
-	WRITE1("AVM = 132 damage");
-	WRITE1("KAR98 = 72 damage");
-	WRITE1("AK47/GROZA = 48 damage");
-	WRITE2("M416/SCAR-L/M16A4/AUG = 41 damage");
-	
-	WRITE1("Helmet 3 = 230xp & 55% - damage");
-	WRITE1("Helmet 2 = 150xp & 40% - damage");
-	WRITE2("Helmet 1 = 80xp & 30% - damage");
-	
-	WRITE1("Flack jacket 3 = 250 & 55% - damage");
-	WRITE1("Flack jacket 2 = 220 & 40% - damage");
-	WRITE1("Flack jacket 1 = 200 & 30% - damage");
+	const int MenuLength = 31;
+
+	string MainMenu[MenuLength] = {
+		"Menu: \n",
+
+		"[AVM] in 3d helmet, enter avm_h3",
+		"[AVM] in 3d flak jacket, enter avm_f3",
+		"[AVM] in 2d helmet, enter avm_h2",
+		"[AVM] in 2d flak jacket, enter avm_f2",
+		"[AVM] in 1d helmet, enter avm_h1",
+		"[AVM] in 1d flak jacket, enter avm_f1 \n",
+
+		"[KAR98] in 3d helmet, enter kar98_h3",
+		"[KAR98] in 3d flak jacket, enter kar98_f3",
+		"[KAR98] in 2d helmet, enter kar98_h2",
+		"[KAR98] in 2d flak jacket, enter kar98_f2",
+		"[KAR98] in 1d helmet, enter kar98_h1",
+		"[KAR98] in 1d flak jacket, enter kar98_f1 \n",
+
+		"[AKM/GROZA] in 3d helmet, enter akm_h3",
+		"[AKM/GROZA] in 3d flak jacket, enter akm_f3",
+		"[AKM/GROZA] in 2d helmet, enter akm_h2",
+		"[AKM/GROZA] in 2d flak jacket, enter akm_f2",
+		"[AKM/GROZA] in 1d helmet, enter akm_h1",
+		"[AKM/GROZA] in 1d flak jacket, enter akm_f1 \n",
+
+		"[M416/SCAR-L/M16A4/AUG] in 3d helmet, enter m416_h3",
+		"[M416/SCAR-L/M16A4/AUG] in 3d flak jacket, enter m416_f3",
+		"[M416/SCAR-L/M16A4/AUG] in 2d helmet, enter m416_h2",
+		"[M416/SCAR-L/M16A4/AUG] in 2d flak jacket, enter m416_f2",
+		"[M416/SCAR-L/M16A4/AUG] in 1d helmet, enter m416_h1",
+		"[M416/SCAR-L/M16A4/AUG] in 1d flak jacket, enter m416_f1 \n",
+
+		"Info - show some info stats",
+		"Clear - clear up console",
+		"ShowMenu - show menu if it was lost",
+		"Contacts - show contacts",
+		"RunTestConf - run test configuration",
+		"Exit - close the program"
+	};
+
+	for(int i = 0; i < MenuLength; i++)
+	{
+		WriteE(MainMenu[i]);
+	}
 }
 
-void SHOWMENU()
+void RunTestConf()
 {
-	WRITE2("Menu: ");
-	
-	WRITE1("[AVM] in 3d helmet, enter avmh3");
-	WRITE1("[AVM] in 3d flak jacket, enter avmj3");
-	WRITE1("[AVM] in 2d helmet, enter avmh2");
-	WRITE1("[AVM] in 2d flak jacket, enter avmj2");
-	WRITE1("[AVM] in 1d helmet, enter avmh1"); 
-	WRITE2("[AVM] in 1d flak jacket, enter avmj1");
-	
-	WRITE1("[KAR98] in 3d helmet, enter kar98h3");
-	WRITE1("[KAR98] in 3d flak jacket, enter kar98j3");
-	WRITE1("[KAR98] in 2d helmet, enter kar98h2");
-	WRITE1("[KAR98] in 2d flak jacket, enter kar98j2");
-	WRITE1("[KAR98] in 1d helmet, enter kar98h1");
-	WRITE2("[KAR98] in 1d flak jacket, enter kar98j1");
-  
-	WRITE1("[AK47/GROZA] in 3d helmet, enter ak47h3");
-	WRITE1("[AK47/GROZA] in 3d flak jacket, enter ak47j3");
-	WRITE1("[AK47/GROZA] in 2d helmet, enter ak47h2");
-	WRITE1("[AK47/GROZA] in 2d flak jacket, enter ak47j2");
-	WRITE1("[AK47/GROZA] in 1d helmet, enter ak47h1");
-	WRITE2("[AK47/GROZA] in 1d flak jacket, enter ak47j1");
+	char AnswerArmor;
+	char AnotherAnswer;
+	string AnswerSave;
+	int AnswerHits = 1;
+	int WeaponDamage;
+	int ArmorXp;
+	string FileName;
+	double CountXDamageToHelet = 2.3;
 
-	WRITE1("[M416/SCAR-L/M16A4/AUG] in 3d helmet, enter m416h3");
-	WRITE1("[M416/SCAR-L/M16A4/AUG] in 3d flak jacket, enter m416j3");
-	WRITE1("[M416/SCAR-L/M16A4/AUG] in 2d helmet, enter m416h2");
-	WRITE1("[M416/SCAR-L/M16A4/AUG] in 2d flak jacket, enter m416j2");
-	WRITE1("[M416/SCAR-L/M16A4/AUG] in 1d helmet, enter m416h1"); 
-	WRITE1("[M416/SCAR-L/M16A4/AUG] in 1d flak jacket, enter m416j1");
+	Write("Helmet [h] or !flack jacket [f] doesnt work yet!: ");
+	cin >> AnswerArmor;
+
+	Write("Do you wanna add some extra parameters (hits, helmet x damage)? [y/n]: ");
+	cin >> AnotherAnswer;
+
+	if(AnotherAnswer == 'y')
+	{
+		Write("How many hits?: [1 - 3]: ");
+		cin >> AnswerHits;
+
+		Write("X damage in helmet 2.3/230% or 2.67/267% default [1 - 3]: ");
+		cin >> CountXDamageToHelet;
+	}
+
+	if(AnswerArmor == 'h')
+	{
+		Write("Enter weapon damage: ");
+		cin >> WeaponDamage;
+
+		Write("Enter armor xp, 230(tier 3), 150(tier 2), 80(tier 1): ");
+		cin >> ArmorXp;
+
+		Write("Wanna save (save repeat if file name is same, save w/ same name, dont save)? [sr/sn/n]: ");
+		cin >> AnswerSave;
+
+		if(AnswerSave == "sr" || AnswerSave == "sn")
+		{
+			Write("File name (w/t space): ");
+			cin >> FileName;
+
+			DisplaySleep();
+			cout << endl;
+			cout << "Saved as " << FileName << endl;
+		}
+
+		cout << endl;
+
+		if(AnswerHits < 0)
+		{
+			AnswerHits = 1;
+		}
+
+		if(AnswerHits == 1)
+		{
+			RunInfoHelmetX(WeaponDamage, ArmorXp, AnswerHits, CountXDamageToHelet, AnswerSave, FileName);
+		}
+
+		if(AnswerHits == 2)
+		{
+			RunInfoHelmetX(WeaponDamage, ArmorXp, AnswerHits, CountXDamageToHelet, AnswerSave, FileName);
+		}
+
+		if(AnswerHits == 3)
+		{
+			RunInfoHelmetX(WeaponDamage, ArmorXp, AnswerHits, CountXDamageToHelet, AnswerSave, FileName);
+		}
+	}
+
+	/*if(AnswerArmor == 'f')
+	{
+		cout << "Enter weapon damage: ";
+		cin >> WeaponDamage;
+
+		cout << "Enter armor xp, 250(tier 3), 220(tier 2), 200(tier 1): ";
+		cin >> ArmorXp;
+
+		cout << endl;
+
+		RunInfoFlackjacket(WeaponDamage, ArmorXp);
+	}*/
+
 }
 
-void STARTMENU()
+void ShowContacts()
 {
-	string ANSWER;
-	int CLOSE;
-  
-	Sleep(1000);
-	SHOWMENU();
+	WriteE("Contacts: ");
+	WriteE("Gmail: starko.web@gmail.com");
+	WriteE("Github: github.com/straikiss");
+	WriteE("If you wanna open gmail or github or both, enter to console [Gmail, Github, OpenBoth]");
+}
+
+void ShowInfo()
+{
+	const int InfoLength = 10;
+
+	string MainMenu[InfoLength] = {
+		"AVM = 132 damage",
+		"KAR98 = 72 damage",
+		"AKM/GROZA = 49 damage",
+		"M416/SCAR-L/M16A4/AUG = 43 damage \n",
+
+		"Helmet 3 = 230xp & 55% - damage",
+		"Helmet 2 = 150xp & 40% - damage",
+		"Helmet 1 = 80xp & 30% - damage \n",
+
+		"Flack jacket 3 = 250 & 55% - damage",
+		"Flack jacket 2 = 220 & 40% - damage",
+		"Flack jacket 1 = 200 & 30% - damage"
+	};
+
+	for(int i = 0; i < InfoLength; i++)
+	{
+		WriteE(MainMenu[i]);
+	}
+}
+
+void RunProgram()
+{
+	ShowMenu();
+
+	string Answer;
+	int Close;
 
 	do
 	{
 		cout << endl;
-		cout << "-> ";
-		cin >> ANSWER;
+		Write("-> ");
+		cin >> Answer;
 		cout << endl;
 
-	    if(ANSWER == "avmh3") 
-	    {
-			RUNINFOHELMET(AVM, HELMETXPLEVEL3);
-	    }
+		if(Answer == "avm_h3")
+		{
+			RunInfoHelmet(AVM, HELMETXPLEVEL3);
+		}
 
-	    if(ANSWER == "avmh2") 
-	    {
-			RUNINFOHELMET(AVM, HELMETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "avmh1") 
-	    {
-			RUNINFOHELMET(AVM, HELMETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "kar98h3") 
-	    {
-			RUNINFOHELMET(KAR98, HELMETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "kar98h2") 
-	    {
-			RUNINFOHELMET(KAR98, HELMETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "kar98h1") 
-	    {
-			RUNINFOHELMET(KAR98, HELMETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "ak47h3") 
-	    {
-			RUNINFOHELMET(AK47, HELMETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "ak47h2") 
-	    {
-			RUNINFOHELMET(AK47, HELMETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "ak47h1") 
-	    {
-			RUNINFOHELMET(AK47, HELMETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "m416h3") 
-	    {
-			RUNINFOHELMET(M416, HELMETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "m416h2") 
-	    {
-			RUNINFOHELMET(M416, HELMETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "m416h1") 
-	    {
-			RUNINFOHELMET(M416, HELMETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "avmj3") 
-	    {
-			RUNINFOFLAKJACKET(AVM, FLAKJACKETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "avmj2") 
-	    {
-			RUNINFOFLAKJACKET(AVM, FLAKJACKETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "avmj1") 
-	    {
-			RUNINFOFLAKJACKET(AVM, FLAKJACKETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "kar98j3") 
-	    {
-			RUNINFOFLAKJACKET(KAR98, FLAKJACKETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "kar98j2") 
-	    {
-			RUNINFOFLAKJACKET(KAR98, FLAKJACKETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "kar98j1") 
-	    {
-			RUNINFOFLAKJACKET(KAR98, FLAKJACKETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "ak47j3") 
-	    {
-			RUNINFOFLAKJACKET(AK47, FLAKJACKETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "ak47j2") 
-	    {
-			RUNINFOFLAKJACKET(AK47, FLAKJACKETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "ak47j1") 
-	    {
-			RUNINFOFLAKJACKET(AK47, FLAKJACKETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "m416j3") 
-	    {
-			RUNINFOFLAKJACKET(M416, FLAKJACKETXPLEVEL3);
-	    }
-	
-	    if(ANSWER == "m416j2") 
-	    {
-			RUNINFOFLAKJACKET(M416, FLAKJACKETXPLEVEL2);
-	    }
-	
-	    if(ANSWER == "m416j1") 
-	    {
-			RUNINFOFLAKJACKET(M416, FLAKJACKETXPLEVEL1);
-	    }
-	
-	    if(ANSWER == "help" || ANSWER == "Help")
-	    {
-			Sleep(1000);
-			WRITE1("Write [info] to show some info stats");
-			WRITE1("Write [clear] to clear console");
-			WRITE1("Write [exit] to exit");
-	    }
-		
-	    if(ANSWER == "info" || ANSWER == "Info")
-	    {
-			Sleep(1000);
-			SHOWINFO();
-	    }
-	
-	    if(ANSWER == "clear" || ANSWER == "Clear") 
-	    {
-			WRITE1("Clearing...");
-			Sleep(1000);
-			system("cls");
-			SHOWMENU();
-	    }
-	    
-	    if(ANSWER == "exit" || ANSWER == "Exit") 
-	    {
-			WRITE1("Closing...");
-			Sleep(1000);
-			CLOSE = 1;
-	    }
-	} 
-	while(CLOSE != 1);
+		if(Answer == "avm_h2")
+		{
+			RunInfoHelmet(AVM, HELMETXPLEVEL2);
+		}
+
+		if(Answer == "avm_h1")
+		{
+			RunInfoHelmet(AVM, HELMETXPLEVEL1);
+		}
+
+		if(Answer == "kar98_h3")
+		{
+			RunInfoHelmet(KAR98, HELMETXPLEVEL3);
+		}
+
+		if(Answer == "kar98_h2")
+		{
+			RunInfoHelmet(KAR98, HELMETXPLEVEL2);
+		}
+
+		if(Answer == "kar98_h1")
+		{
+			RunInfoHelmet(KAR98, HELMETXPLEVEL1);
+		}
+
+		if(Answer == "akm_h3")
+		{
+			RunInfoHelmet(AKM, HELMETXPLEVEL3);
+		}
+
+		if(Answer == "akm_h2")
+		{
+			RunInfoHelmet(AKM, HELMETXPLEVEL2);
+		}
+
+		if(Answer == "akm_h1")
+		{
+			RunInfoHelmet(AKM, HELMETXPLEVEL1);
+		}
+
+		if(Answer == "m416_h3")
+		{
+			RunInfoHelmet(M416, HELMETXPLEVEL3);
+		}
+
+		if(Answer == "m416_h2")
+		{
+			RunInfoHelmet(M416, HELMETXPLEVEL2);
+		}
+
+		if(Answer == "m416_h1")
+		{
+			RunInfoHelmet(M416, HELMETXPLEVEL1);
+		}
+
+		if(Answer == "avm_f3")
+		{
+			RunInfoFlackjacket(AVM, FLAKJACKETXPLEVEL3);
+		}
+
+		if(Answer == "avm_f2")
+		{
+			RunInfoFlackjacket(AVM, FLAKJACKETXPLEVEL2);
+		}
+
+		if(Answer == "avm_f1")
+		{
+			RunInfoFlackjacket(AVM, FLAKJACKETXPLEVEL1);
+		}
+
+		if(Answer == "kar98_f3")
+		{
+			RunInfoFlackjacket(KAR98, FLAKJACKETXPLEVEL3);
+		}
+
+		if(Answer == "kar98_f2")
+		{
+			RunInfoFlackjacket(KAR98, FLAKJACKETXPLEVEL2);
+		}
+
+		if(Answer == "kar98_f1")
+		{
+			RunInfoFlackjacket(KAR98, FLAKJACKETXPLEVEL1);
+		}
+
+		if(Answer == "akm_f3")
+		{
+			RunInfoFlackjacket(AKM, FLAKJACKETXPLEVEL3);
+		}
+
+		if(Answer == "akm_f2")
+		{
+			RunInfoFlackjacket(AKM, FLAKJACKETXPLEVEL2);
+		}
+
+		if(Answer == "akm_f1")
+		{
+			RunInfoFlackjacket(AKM, FLAKJACKETXPLEVEL1);
+		}
+
+		if(Answer == "m416_f3")
+		{
+			RunInfoFlackjacket(M416, FLAKJACKETXPLEVEL3);
+		}
+
+		if(Answer == "m416_f2")
+		{
+			RunInfoFlackjacket(M416, FLAKJACKETXPLEVEL2);
+		}
+
+		if(Answer == "m416_f1")
+		{
+			RunInfoFlackjacket(M416, FLAKJACKETXPLEVEL1);
+		}
+
+		if(Answer == "RunTestConf")
+		{
+			DisplaySleep();
+			RunTestConf();
+		}
+
+		if(Answer == "Info")
+		{
+			DisplaySleep();
+			ShowInfo();
+		}
+
+		if(Answer == "Contacts")
+		{
+			ShowContacts();
+		}
+
+		if(Answer == "Gmail")
+		{
+			OpenGmail();
+		}
+
+		if(Answer == "Github")
+		{
+			OpenGithub();
+		}
+
+		if(Answer == "OpenBoth")
+		{
+			OpenBoth();
+		}
+
+		if(Answer == "Clear")
+		{
+			WriteE("Clearing...");
+			DisplaySleep();
+			DisplayClear();
+			ShowMenu();
+		}
+
+		if(Answer == "ShowMenu")
+		{
+			ShowMenu();
+		}
+
+		if(Answer == "Exit")
+		{
+			WriteE("Closing...");
+			DisplaySleep();
+			Close = 1;
+		}
+	} while(Close != 1);
 }
+
+// func start
+void DisplaySleep()
+{
+	Sleep(1000);
+}
+
+void DisplayClear()
+{
+	system("cls");
+}
+
+void OpenGmail()
+{
+	WriteE("Opening...");
+	DisplaySleep();
+	ShellExecute(0, 0, L"https://www.google.com/gmail/", 0, 0, SW_SHOW);
+	DisplayClear();
+	ShowMenu();
+}
+
+void OpenGithub()
+{
+	WriteE("Opening...");
+	DisplaySleep();
+	ShellExecute(0, 0, L"https://github.com/straikiss", 0, 0, SW_SHOW);
+	DisplayClear();
+	ShowMenu();
+}
+
+void OpenBoth()
+{
+	WriteE("Opening...");
+	DisplaySleep();
+	ShellExecute(0, 0, L"https://www.google.com/gmail/", 0, 0, SW_SHOW);
+	ShellExecute(0, 0, L"https://github.com/straikiss", 0, 0, SW_SHOW);
+	DisplayClear();
+	ShowMenu();
+}
+
+// func end
 
 #endif // PUBG_MENU_H
