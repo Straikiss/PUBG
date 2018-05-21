@@ -6,53 +6,58 @@ using namespace std;
 const int AVM = 132;
 const int KAR98 = 72;
 
-// AK47/GROZA
-const int AK47 = 48;
+// AKM/GROZA
+const int AKM = 49;
 
 // M416/SCAR-L/M16A4/AUG
-const int M416 = 41;
+// 1.10.11 = 44
+// 1.10.12 = 43
+const int M416 = 43;
 
 const int STATUS3 = 0;
 
 const int PERSONXP = 100;
-const float HELMETX = 2.3;
+double HELMETX = 2.3;
 
-const int HELMETXPLEVEL3 = 230;
-const int FLAKJACKETXPLEVEL3 = 250;
+//const double HelmetNewX = 2.67; sks/m14 etc.
 
-const int HELMETXPLEVEL2 = 150;
-const int FLAKJACKETXPLEVEL2 = 220;
+int HELMETXPLEVEL3 = 230;
+int FLAKJACKETXPLEVEL3 = 250;
 
-const int HELMETXPLEVEL1 = 80;
-const int FLAKJACKETXPLEVEL1 = 200;
+int HELMETXPLEVEL2 = 150;
+int FLAKJACKETXPLEVEL2 = 220;
+
+int HELMETXPLEVEL1 = 80;
+int FLAKJACKETXPLEVEL1 = 200;
 
 // 100% - 55%
-const float HELMETXLEVEL3 = 0.45;
-const float FLAKJACKETXLEVEL3 = 0.45;
+double HELMETXLEVEL3 = 0.45;
+double FLAKJACKETXLEVEL3 = 0.45;
 
 // 100% - 40%
-const float HELMETXLEVEL2 = 0.60;
-const float FLAKJACKETXLEVEL2 = 0.60;
+double HELMETXLEVEL2 = 0.60;
+double FLAKJACKETXLEVEL2 = 0.60;
 
 // 100% - 30%
-const float HELMETXLEVEL1 = 0.70;
-const float FLAKJACKETXLEVEL1 = 0.70;
+double HELMETXLEVEL1 = 0.70;
+double FLAKJACKETXLEVEL1 = 0.70;
 
 template <typename T>
-void WRITE1(T TEXT)
+void Write(T Text)
 {
-	cout << TEXT << endl;
+	cout << Text;
 }
 
 template <typename T>
-void WRITE2(T TEXT)
+void WriteE(T Text)
 {
-	cout << TEXT << endl << endl;
+	cout << Text << endl;
 }
 
-// TYPE1 = AVM
-// TYPE2 = HELMETXPLEVEL3
-// void RUNINFOHELMET(const int TYPE1, const int TYPE2);
-// void RUNINFOFLAKJACKET(const int TYPE1, const int TYPE2);
+template <typename T>
+void WriteEE(T Text)
+{
+	cout << Text << endl << endl;
+}
 
 #endif // PUBG_STATS_H
